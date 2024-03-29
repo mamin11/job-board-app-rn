@@ -97,6 +97,12 @@ function AppliedJobs() {
 }
 
 function JobItem({ job }) {
+  const [isFavourite, setIsFavourite] = useState(false);
+
+  const handleFavourite = () => {
+    setIsFavourite(!isFavourite);
+  }
+
   return (
     <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 15, marginHorizontal: 5, backgroundColor: 'white', borderRadius: 10 }}>
       <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={job.logo} />
@@ -110,7 +116,9 @@ function JobItem({ job }) {
         </View>
 
         <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingHorizontal: 10 }}>
-          <Icon name="heart-outline" size={30} color="#000000" />
+          <TouchableOpacity onPress={() => handleFavourite()}>
+            <Icon name={isFavourite ? 'heart' : 'heart-outline'} size={30} color={isFavourite ? '#dd3838' : '#000000'} />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
