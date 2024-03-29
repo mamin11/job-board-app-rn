@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View, Image, TextInput } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
 import profileImage from './assets/profile.jpg';
 import Icon from 'react-native-vector-icons/Ionicons';
 
@@ -40,6 +40,9 @@ function SearchBar() {
           style={{ marginLeft: 10, flex: 1, fontSize: 15, color: '#424242' }}
           placeholder="Search job by name"
         />
+        <TouchableOpacity onPress={() => alert('hello there')}>
+          <Icon name="filter" size={25} color="#000" />
+        </TouchableOpacity>
       </View>
     </View>
   );
