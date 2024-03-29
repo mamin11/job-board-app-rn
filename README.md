@@ -4,4 +4,5 @@ npx expo start
 <details>
 <summary>Progress Screenshots</summary>
 <img src="./docs/image.png">
+<img src="./docs/image2.png">
 </details>
