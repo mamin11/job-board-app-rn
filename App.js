@@ -59,7 +59,7 @@ function SearchBar() {
       <View style={styles.searchBar}>
         <Icon name="search" size={25} color="#000" />
         <TextInput
-          style={{ marginLeft: 10, flex: 1, fontSize: 15, color: '#424242' }}
+          style={{ marginLeft: 10, flex: 1, fontSize: 15, color: '#424242', paddingVertical: 10 }}
           placeholder="Search job by name"
         />
         <TouchableOpacity onPress={() => alert('hello there')}>
@@ -135,8 +135,8 @@ function SuggestedJobs() {
   return (
     <>
       <HeadingText text="Based on your interests" />
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ margin: 0, padding: 0, height: 200 }}>
-        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10, height: 150 }}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ margin: 0, padding: 0, height: 120 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
           {jobs.map((job, index) => {
             return <JobItem key={index} job={job} />
           })}
@@ -156,17 +156,36 @@ export default function App() {
     }, 2000);
   };
 
+  const jobs = [
+    { title: 'UX Designer', company: 'Microsoft', location: 'Manchester', salary: '£78,000/year', logo: microsoftImage },
+    { title: 'Staff Engineer', company: 'LinkedIn', location: 'London', salary: '£102,000/year', logo: linkedinImage },
+    { title: 'Senior Developer', company: 'Netlfix', location: 'London', salary: '£122,000/year', logo: netlfixImage }
+  ];
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ justifyContent: 'flex-start', height: '100%', width: '100%', backgroundColor: '#e9e9e9' }}>
         <StatusBar style="auto" />
         <Welcome />
-        <ScrollView style={{ margin: 0, padding: 0 }} refreshControl={
+        <ScrollView showsVerticalScrollIndicator={false} style={{ margin: 0, padding: 0 }} refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
         }>
           <SearchBar />
           <AppliedJobs />
           <SuggestedJobs />
+
+          <HeadingText text="Recently added" />
+          <ScrollView vertical={true} showsVerticalScrollIndicator={false} style={{ margin: 0, padding: 0, }}>
+            <View style={{ flexDirection: 'col', justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
+              {jobs.map((job, index) => {
+                return (
+                  <View key={index} style={{ padding: 10, width: '100%' }}>
+                    <JobItem key={index} job={job} />
+                  </View>)
+              })}
+            </View>
+          </ScrollView>
+
         </ScrollView>
       </View >
     </SafeAreaView >
