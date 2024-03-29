@@ -7,8 +7,10 @@ import {
   Image,
   TextInput,
   TouchableOpacity,
-  ScrollView
+  ScrollView,
+  RefreshControl
 } from 'react-native';
+import { useState } from 'react';
 import profileImage from './assets/profile.jpg';
 import googleImage from './assets/google.jpg';
 import microsoftImage from './assets/microsoft.jpg';
@@ -137,15 +139,27 @@ function SuggestedJobs() {
 }
 
 export default function App() {
+  const [refreshing, setRefreshing] = useState(false);
+
+  const onRefresh = () => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <View style={{ justifyContent: 'flex-start', height: '100%', width: '100%', backgroundColor: '#e9e9e9' }}>
         <StatusBar style="auto" />
         <Welcome />
-        <SearchBar />
-        <AppliedJobs />
-        <SuggestedJobs />
-
+        <ScrollView style={{ margin: 0, padding: 0 }} refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }>
+          <SearchBar />
+          <AppliedJobs />
+          <SuggestedJobs />
+        </ScrollView>
       </View >
     </SafeAreaView >
   );
