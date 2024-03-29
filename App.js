@@ -1,7 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, View, Image, TextInput, TouchableOpacity } from 'react-native';
+import {
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ScrollView
+} from 'react-native';
 import profileImage from './assets/profile.jpg';
+import googleImage from './assets/google.jpg';
+import microsoftImage from './assets/microsoft.jpg';
+import linkedinImage from './assets/linkedin.jpg';
+import appleImage from './assets/apple.jpg';
+import netlfixImage from './assets/netflix.jpg';
 import Icon from 'react-native-vector-icons/Ionicons';
+
+function HeadingText({ text }) {
+  return (
+    <Text style={{ paddingVertical: 15, paddingHorizontal: 20, fontSize: 18, fontWeight: '600' }} >{text}</Text>
+  );
+}
 
 function Welcome() {
   return (
@@ -48,6 +68,74 @@ function SearchBar() {
   );
 }
 
+function AppliedJobs() {
+  return (
+    <>
+      <HeadingText text="Ongoing interviews" />
+      <View style={{
+        paddingHorizontal: 20, flexDirection: 'row',
+        justifyContent: 'center', alignItems: 'center', height: 120, width: '100%'
+      }}>
+        <View style={{
+          paddingHorizontal: 20, flexDirection: 'row',
+          justifyContent: 'center', alignItems: 'center', backgroundColor: '#224c6e', height: 120, width: '100%', borderRadius: 10
+        }}>
+          <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={googleImage} />
+          <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
+            <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>Software Engineer</Text>
+            <Text style={{ color: '#fff', fontSize: 13, paddingVertical: 2 }}>Google - Remote</Text>
+          </View>
+          <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#d68039', borderRadius: 10 }}>
+            <Text style={{ color: '#fff', fontSize: 15, padding: 6 }}>awaiting</Text>
+          </View>
+        </View>
+      </View>
+    </>
+  );
+}
+
+function JobItem({ job }) {
+  return (
+    <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 15, marginHorizontal: 5, backgroundColor: 'white', borderRadius: 10 }}>
+      <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={job.logo} />
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', borderRadius: 10 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
+          <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'flex-start', padding: 15, }}>
+            <Text style={{ color: '#000', fontSize: 15, paddingVertical: 5, fontWeight: 500 }}>{job.title}</Text>
+            <Text style={{ color: '#686666', fontSize: 13 }}>{job.company} - {job.location}</Text>
+            <Text style={{ color: '#000', fontSize: 15, paddingVertical: 10, fontWeight: 600 }}>{job.salary}</Text>
+          </View>
+        </View>
+
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-start', paddingHorizontal: 10 }}>
+          <Icon name="heart-outline" size={30} color="#000000" />
+        </View>
+      </View>
+    </View>
+  );
+}
+
+function SuggestedJobs() {
+  const jobs = [
+    { title: 'Software Engineer', company: 'Apple', location: 'London', salary: '£95,000/year', logo: appleImage },
+    { title: 'UX Designer', company: 'Microsoft', location: 'Manchester', salary: '£78,000/year', logo: microsoftImage },
+    { title: 'Staff Engineer', company: 'LinkedIn', location: 'London', salary: '£102,000/year', logo: linkedinImage },
+    { title: 'Senior Developer', company: 'Netlfix', location: 'London', salary: '£122,000/year', logo: netlfixImage }
+  ];
+  return (
+    <>
+      <HeadingText text="Based on your interests" />
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ margin: 0, padding: 0, height: 200 }}>
+        <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10, height: 150 }}>
+          {jobs.map((job, index) => {
+            return <JobItem key={index} job={job} />
+          })}
+        </View>
+      </ScrollView>
+    </>
+  );
+}
+
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
@@ -55,6 +143,8 @@ export default function App() {
         <StatusBar style="auto" />
         <Welcome />
         <SearchBar />
+        <AppliedJobs />
+        <SuggestedJobs />
 
       </View >
     </SafeAreaView >
