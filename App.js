@@ -8,7 +8,8 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
-  RefreshControl
+  RefreshControl,
+  FlatList
 } from 'react-native';
 import { useState } from 'react';
 import profileImage from './assets/profile.jpg';
@@ -17,6 +18,9 @@ import microsoftImage from './assets/microsoft.jpg';
 import linkedinImage from './assets/linkedin.jpg';
 import appleImage from './assets/apple.jpg';
 import netlfixImage from './assets/netflix.jpg';
+import facebookImage from './assets/facebook.jpg';
+import amazonImage from './assets/amazon.jpg';
+import spotifyImage from './assets/spotify.jpg';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 function HeadingText({ text }) {
@@ -87,7 +91,7 @@ function AppliedJobs() {
             <Text style={{ color: '#fff', fontSize: 18, fontWeight: '600' }}>Software Engineer</Text>
             <Text style={{ color: '#fff', fontSize: 13, paddingVertical: 2 }}>Google - Remote</Text>
           </View>
-          <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', flex: 1, backgroundColor: '#d68039', borderRadius: 10 }}>
+          <View style={{ flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginBottom: 15, flex: 1, backgroundColor: '#d68039', borderRadius: 10 }}>
             <Text style={{ color: '#fff', fontSize: 15, padding: 6 }}>awaiting</Text>
           </View>
         </View>
@@ -135,7 +139,7 @@ function SuggestedJobs() {
   return (
     <>
       <HeadingText text="Based on your interests" />
-      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ margin: 0, padding: 0, height: 120 }}>
+      <ScrollView horizontal={true} showsHorizontalScrollIndicator={false} style={{ margin: 0, padding: 0, height: 200 }}>
         <View style={{ flexDirection: 'row', justifyContent: 'center', alignItems: 'center', padding: 10 }}>
           {jobs.map((job, index) => {
             return <JobItem key={index} job={job} />
@@ -157,9 +161,9 @@ export default function App() {
   };
 
   const jobs = [
-    { title: 'UX Designer', company: 'Microsoft', location: 'Manchester', salary: '£78,000/year', logo: microsoftImage },
-    { title: 'Staff Engineer', company: 'LinkedIn', location: 'London', salary: '£102,000/year', logo: linkedinImage },
-    { title: 'Senior Developer', company: 'Netlfix', location: 'London', salary: '£122,000/year', logo: netlfixImage }
+    { title: 'UX Designer', company: 'Facebook', location: 'California', salary: '£88,000/year', logo: facebookImage },
+    { title: 'Staff Engineer', company: 'Amazon', location: 'London', salary: '£132,000/year', logo: amazonImage },
+    { title: 'Senior Developer', company: 'Spotify', location: 'London', salary: '£111,000/year', logo: spotifyImage }
   ];
 
   return (
@@ -175,16 +179,14 @@ export default function App() {
           <SuggestedJobs />
 
           <HeadingText text="Recently added" />
-          <ScrollView vertical={true} showsVerticalScrollIndicator={false} style={{ margin: 0, padding: 0, }}>
-            <View style={{ flexDirection: 'col', justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
-              {jobs.map((job, index) => {
-                return (
-                  <View key={index} style={{ padding: 10, width: '100%' }}>
-                    <JobItem key={index} job={job} />
-                  </View>)
-              })}
-            </View>
-          </ScrollView>
+          <View style={{ flexDirection: 'col', justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
+            {jobs.map((job, index) => {
+              return (
+                <View key={index} style={{ padding: 10, width: '100%' }}>
+                  <JobItem key={index} job={job} />
+                </View>)
+            })}
+          </View>
 
         </ScrollView>
       </View >
