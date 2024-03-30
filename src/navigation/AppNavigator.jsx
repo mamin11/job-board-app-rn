@@ -1,7 +1,7 @@
 import React from 'react';
-import HomeScreen from '../screens/HomeScreen';
-import ProfileScreen from '../screens/ProfileScreen';
-import JobDetailScreen from '../screens/JobDetailScreen';
+import HomeScreen from '@screens/HomeScreen';
+import ProfileScreen from '@screens/ProfileScreen';
+import JobDetailScreen from '@screens/JobDetailScreen';
 
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 

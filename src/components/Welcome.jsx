@@ -1,4 +1,4 @@
-import profileImage from '../../assets/profile.jpg';
+import { profileImage } from '@assets';
 import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import {
@@ -27,9 +27,7 @@ export default function Welcome() {
             </View>
 
             <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
-                <TouchableOpacity onPress={() => navigation.navigate('Job Details')}>
-                    <Icon name="notifications-outline" size={30} color="#000" />
-                </TouchableOpacity>
+                <Icon name="notifications-outline" size={30} color="#000" />
                 <View style={{
                     position: 'absolute',
                     right: 0,

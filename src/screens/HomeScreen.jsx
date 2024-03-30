@@ -8,12 +8,12 @@ import {
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
-import { HeadingText, Welcome, SearchBar, JobItem } from '../components';
+import { HeadingText, Welcome, SearchBar, JobItem } from '@components';
 import {
     googleImage, microsoftImage, linkedinImage,
     appleImage, netlfixImage, facebookImage, amazonImage, spotifyImage,
     microsoftOffice, amazonOffice, facebookOffice, linkedinOffice, netflixOffice, appleOffice, spotifyOffice
-} from '../../assets';
+} from '@assets';
 
 function SuggestedJobs() {
     const jobs = [

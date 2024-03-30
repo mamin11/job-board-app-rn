@@ -6,7 +6,7 @@ import {
     ScrollView,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-import { HeadingText } from '../components';
+import { HeadingText } from '@components';
 
 function RequirementItem({ text }) {
     return (
