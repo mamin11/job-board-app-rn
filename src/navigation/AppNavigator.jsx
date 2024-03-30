@@ -18,8 +18,23 @@ function AppNavigator() {
                         headerShown: false
                     }
                 } />
-            <Stack.Screen name="Profile" component={ProfileScreen} />
-            <Stack.Screen name="Job Details" component={JobDetailScreen} />
+            <Stack.Screen 
+                name="Profile" 
+                component={ProfileScreen} 
+                options={
+                    {
+                        headerShown: false
+                    }
+                }
+                />
+            <Stack.Screen 
+                name="Job Details" 
+                component={JobDetailScreen} 
+                options={
+                    {
+                        headerShown: false
+                    }
+                }/>
         </Stack.Navigator>
     );
 }

@@ -5,20 +5,82 @@ import {
     Text,
     RefreshControl,
 } from 'react-native';
+import { StatusBar } from 'expo-status-bar';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import { HeadingText, Welcome, SearchBar, JobItem } from '../components';
-import { 
-    googleImage, microsoftImage, linkedinImage, 
-    appleImage, netlfixImage, facebookImage, amazonImage, spotifyImage 
+import {
+    googleImage, microsoftImage, linkedinImage,
+    appleImage, netlfixImage, facebookImage, amazonImage, spotifyImage,
+    microsoftOffice, amazonOffice, facebookOffice, linkedinOffice, netflixOffice, appleOffice, spotifyOffice
 } from '../../assets';
 
 function SuggestedJobs() {
     const jobs = [
-        { title: 'Software Engineer', company: 'Apple', location: 'London', salary: '£95,000/year', logo: appleImage },
-        { title: 'UX Designer', company: 'Microsoft', location: 'Manchester', salary: '£78,000/year', logo: microsoftImage },
-        { title: 'Staff Engineer', company: 'LinkedIn', location: 'London', salary: '£102,000/year', logo: linkedinImage },
-        { title: 'Senior Developer', company: 'Netlfix', location: 'London', salary: '£122,000/year', logo: netlfixImage }
+        { 
+            title: 'Software Engineer', 
+            company: 'Apple', 
+            location: 'London', 
+            salary: '£95,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: appleImage,
+            banner: appleOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        },
+        { 
+            title: 'UX Designer', 
+            company: 'Microsoft', 
+            location: 'Manchester', 
+            salary: '£78,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: microsoftImage, 
+            banner: microsoftOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        },
+        { 
+            title: 'Staff Engineer', 
+            company: 'LinkedIn', 
+            location: 'London', 
+            salary: '£102,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: linkedinImage,
+            banner: linkedinOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        },
+        { 
+            title: 'Senior Developer', 
+            company: 'Netlfix', 
+            location: 'London', 
+            salary: '£122,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: netlfixImage,
+            banner: netflixOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        }
     ];
     return (
         <>
@@ -62,9 +124,54 @@ function AppliedJobs() {
 
 function RecentlyAddedJobs() {
     const jobs = [
-        { title: 'UX Designer', company: 'Facebook', location: 'California', salary: '£88,000/year', logo: facebookImage },
-        { title: 'Staff Engineer', company: 'Amazon', location: 'London', salary: '£132,000/year', logo: amazonImage },
-        { title: 'Senior Developer', company: 'Spotify', location: 'London', salary: '£111,000/year', logo: spotifyImage }
+        { 
+            title: 'UX Designer', 
+            company: 'Facebook', 
+            location: 'California', 
+            salary: '£88,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: facebookImage,
+            banner: facebookOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        },
+        { 
+            title: 'Staff Engineer', 
+            company: 'Amazon', 
+            location: 'London', 
+            salary: '£132,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: amazonImage,
+            banner: amazonOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        },
+        { 
+            title: 'Senior Developer', 
+            company: 'Spotify', 
+            location: 'London', 
+            salary: '£111,000/year', 
+            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eget nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi. Curabitur vel nunc nec arcu ultricies elementum. In hac habitasse platea dictumst. Curabitur eget magna id purus tincidunt condimentum. Nulla facilisi.',
+            logo: spotifyImage,
+            banner: spotifyOffice,
+            requirements: [
+                '3+ years of experience in software development',
+                'Proficient in Java, C++, Python, or similar languages',
+                'Strong problem-solving skills',
+                'Excellent communication skills',
+                'Bachelor\'s degree in Computer Science or related field'
+            ]
+        }
     ];
 
     return (
@@ -93,18 +200,21 @@ export default function HomeScreen() {
     };
 
     return (
-        <SafeAreaView>
-            <View style={{ justifyContent: 'flex-start', height: '100%', width: '100%', backgroundColor: '#e9e9e9' }}>
-                <Welcome />
-                <ScrollView showsVerticalScrollIndicator={false} style={{ margin: 0, padding: 0 }} refreshControl={
-                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-                }>
-                    <SearchBar />
-                    <AppliedJobs />
-                    <SuggestedJobs />
-                    <RecentlyAddedJobs />
-                </ScrollView>
-            </View >
-        </SafeAreaView >
+        <>
+            <StatusBar style='auto' />
+            <SafeAreaView>
+                <View style={{ justifyContent: 'flex-start', height: '100%', width: '100%', backgroundColor: '#e9e9e9' }}>
+                    <Welcome />
+                    <ScrollView showsVerticalScrollIndicator={false} style={{ margin: 0, padding: 0 }} refreshControl={
+                        <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+                    }>
+                        <SearchBar />
+                        <AppliedJobs />
+                        <SuggestedJobs />
+                        <RecentlyAddedJobs />
+                    </ScrollView>
+                </View >
+            </SafeAreaView >
+        </>
     );
 }
