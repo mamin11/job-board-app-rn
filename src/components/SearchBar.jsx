@@ -12,7 +12,7 @@ export default function SearchBar() {
             <View style={styles.searchBar}>
                 <Icon name="search" size={25} color="#000" />
                 <TextInput
-                    style={{ marginLeft: 10, flex: 1, fontSize: 15, color: '#424242', paddingVertical: 10 }}
+                    style={{ marginLeft: 10, flex: 1, fontSize: 15, color: '#424242', paddingVertical: 6 }}
                     placeholder="Search job by name"
                 />
                 <TouchableOpacity onPress={() => alert('hello there')}>
