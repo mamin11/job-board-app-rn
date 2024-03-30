@@ -9,4 +9,6 @@ npx expo start
 <img src="./docs/image4.png">
 <img src="./docs/image5.png">
 <img src="./docs/image6.png">
+<img src="./docs/image7.png">
+<img src="./docs/image8.png">
 </details>
