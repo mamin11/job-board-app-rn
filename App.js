@@ -1,6 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
 import {
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
@@ -11,6 +10,9 @@ import {
   RefreshControl,
   FlatList
 } from 'react-native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from 'react';
 import profileImage from './assets/profile.jpg';
 import googleImage from './assets/google.jpg';
@@ -30,11 +32,15 @@ function HeadingText({ text }) {
 }
 
 function Welcome() {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.welcome}>
 
       <View style={{ flexDirection: 'row', alignItems: 'flex-start', paddingVertical: 10 }}>
-        <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={profileImage} />
+        <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
+          <Image style={{ width: 50, height: 50, borderRadius: 50 }} source={profileImage} />
+        </TouchableOpacity>
         <View style={{ flexDirection: 'column', alignItems: 'flex-start', paddingHorizontal: 20 }}>
           <Text style={{ color: 'black', fontSize: 15 }}>Welcome back, </Text>
           <Text style={{ color: 'black', fontSize: 20, fontWeight: '500' }}>Amin Hussein</Text>
@@ -42,7 +48,9 @@ function Welcome() {
       </View>
 
       <View style={{ flexDirection: 'row', alignItems: 'flex-end' }}>
+        <TouchableOpacity onPress={() => navigation.navigate('Job Details')}>
         <Icon name="notifications-outline" size={30} color="#000" />
+        </TouchableOpacity>
         <View style={{
           position: 'absolute',
           right: 0,
@@ -150,7 +158,29 @@ function SuggestedJobs() {
   );
 }
 
-export default function App() {
+function RecentlyAddedJobs() {
+  const jobs = [
+    { title: 'UX Designer', company: 'Facebook', location: 'California', salary: '£88,000/year', logo: facebookImage },
+    { title: 'Staff Engineer', company: 'Amazon', location: 'London', salary: '£132,000/year', logo: amazonImage },
+    { title: 'Senior Developer', company: 'Spotify', location: 'London', salary: '£111,000/year', logo: spotifyImage }
+  ];
+
+  return (
+    <>
+      <HeadingText text="Recently added" />
+      <View style={{ flexDirection: 'col', justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
+        {jobs.map((job, index) => {
+          return (
+            <View key={index} style={{ padding: 10, width: '100%' }}>
+              <JobItem key={index} job={job} />
+            </View>)
+        })}
+      </View>
+    </>
+  );
+}
+
+function HomeScreen({ navigation }) {
   const [refreshing, setRefreshing] = useState(false);
 
   const onRefresh = () => {
@@ -160,16 +190,9 @@ export default function App() {
     }, 2000);
   };
 
-  const jobs = [
-    { title: 'UX Designer', company: 'Facebook', location: 'California', salary: '£88,000/year', logo: facebookImage },
-    { title: 'Staff Engineer', company: 'Amazon', location: 'London', salary: '£132,000/year', logo: amazonImage },
-    { title: 'Senior Developer', company: 'Spotify', location: 'London', salary: '£111,000/year', logo: spotifyImage }
-  ];
-
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView>
       <View style={{ justifyContent: 'flex-start', height: '100%', width: '100%', backgroundColor: '#e9e9e9' }}>
-        <StatusBar style="auto" />
         <Welcome />
         <ScrollView showsVerticalScrollIndicator={false} style={{ margin: 0, padding: 0 }} refreshControl={
           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
@@ -177,20 +200,52 @@ export default function App() {
           <SearchBar />
           <AppliedJobs />
           <SuggestedJobs />
-
-          <HeadingText text="Recently added" />
-          <View style={{ flexDirection: 'col', justifyContent: 'center', alignItems: 'flex-start', padding: 10 }}>
-            {jobs.map((job, index) => {
-              return (
-                <View key={index} style={{ padding: 10, width: '100%' }}>
-                  <JobItem key={index} job={job} />
-                </View>)
-            })}
-          </View>
+          <RecentlyAddedJobs />
 
         </ScrollView>
       </View >
     </SafeAreaView >
+  );
+}
+
+function ProfileScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Profile Screen</Text>
+    </View>
+  );
+}
+
+function JobDetailsScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Job details screen</Text>
+    </View>
+  );
+}
+
+const Stack = createNativeStackNavigator();
+
+export default function App() {
+
+  return (
+    <>
+    <StatusBar style='auto'/>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Home"
+            component={HomeScreen}
+            options={
+              {
+                headerShown: false
+              }
+            } />
+          <Stack.Screen name="Profile" component={ProfileScreen} />
+          <Stack.Screen name="Job Details" component={JobDetailsScreen} />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
 
@@ -203,8 +258,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomLeftRadius: 20,
-    borderBottomRightRadius: 20,
+    borderRadius: 20,
   },
   searchBar: {
     height: 50,
